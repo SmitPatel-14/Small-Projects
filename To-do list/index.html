@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="quote-box">
+            <p id="quote-text"></p>
+        </div>
+
+        <div class="todo-app">
+            <h2 class="header-flex">
+                My To-Do List
+                <button id="theme-changer" onclick="changeTheme()">Change Theme</button>
+            </h2>
+            
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add your task...">
+                <button onclick="addTask()">Add</button>
+            </div>
+
+            <ul id="list-container">
+                </ul>
+
+            <div class="footer-controls">
+                <button onclick="filterTasks('all')" class="filter-btn active">All</button>
+                <button onclick="filterTasks('active')" class="filter-btn">Active</button>
+                <button onclick="filterTasks('completed')" class="filter-btn">Completed</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,264 @@
+/* Import a better font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+    /* Default (Motivation Blue) Theme */
+    --bg-color: linear-gradient(135deg, #1f4287, #2176ff); /* Deep Blue Gradient */
+    --app-bg: #ffffff;
+    --text-color: #333333;
+    --heading-color: #1f4287;
+    --primary-btn-bg: #2176ff; /* Vibrant Blue */
+    --primary-btn-hover: #165abf;
+    --completed-color: #999999;
+    --hover-bg: #f0f4f8;
+    --input-bg: #e6eef6;
+}
+
+/* Theme 2: Success Green */
+body.theme-green {
+    --bg-color: linear-gradient(135deg, #0f9b8e, #10b981); /* Green Gradient */
+    --heading-color: #0f9b8e;
+    --primary-btn-bg: #10b981;
+    --primary-btn-hover: #0d8a67;
+}
+
+/* Theme 3: Focus Purple */
+body.theme-purple {
+    --bg-color: linear-gradient(135deg, #6d28d9, #8b5cf6); /* Purple Gradient */
+    --heading-color: #6d28d9;
+    --primary-btn-bg: #8b5cf6;
+    --primary-btn-hover: #7c3aed;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background 0.5s ease; /* Smooth theme transition */
+}
+
+.container {
+    width: 100%;
+    max-width: 550px;
+}
+
+/* Quote Box Styling */
+.quote-box {
+    background: var(--app-bg);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#quote-text {
+    font-size: 1.1em;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+/* To-Do App Styling */
+.todo-app {
+    background: var(--app-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.todo-app h2 {
+    color: var(--heading-color);
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.todo-app h2 img {
+    width: 30px;
+    margin-left: 10px;
+}
+
+/* Theme Changer Button */
+#theme-changer {
+    padding: 8px 15px;
+    background: var(--heading-color);
+    color: white;
+    font-size: 14px;
+    border-radius: 20px;
+    margin-left: auto; /* Push button to the right */
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    outline: none;
+}
+
+#theme-changer:hover {
+    background: var(--primary-btn-hover);
+}
+
+/* Input Row */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--input-bg);
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    color: var(--text-color);
+}
+
+.row button {
+    border: none;
+    outline: none;
+    padding: 14px 30px;
+    background: var(--primary-btn-bg);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 40px;
+    transition: background 0.3s;
+}
+
+.row button:hover {
+    background: var(--primary-btn-hover);
+}
+
+/* List Styling */
+#list-container {
+    list-style: none;
+    padding: 0;
+}
+
+#list-container li {
+    position: relative;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    user-select: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: var(--text-color);
+    border-bottom: 1px solid #eee; /* Subtle separator */
+}
+
+#list-container li:last-child {
+    border-bottom: none;
+}
+
+#list-container li:hover {
+    background: var(--hover-bg);
+    border-radius: 5px;
+}
+
+/* Better Checkmark Style (Square and colored) */
+#list-container li::before {
+    content: '';
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border: 2px solid var(--primary-btn-bg);
+    border-radius: 5px; /* Square check box */
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8px;
+    transition: all 0.2s;
+}
+
+/* Completed Task Style */
+#list-container li.checked {
+    color: var(--completed-color);
+    text-decoration: line-through;
+}
+
+/* CHECKMARK INSIDE BOX */
+#list-container li.checked::before {
+    border-color: var(--primary-btn-bg);
+    background-color: var(--primary-btn-bg);
+    content: '\2713'; /* Unicode checkmark */
+    color: white;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+}
+
+/* Delete Button (The 'x') */
+#list-container li span {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+#list-container li span:hover {
+    background: #f1f1f1;
+}
+
+/* Footer Filters */
+.footer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+}
+
+.footer-controls .filter-btn {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #e0e0e0;
+    color: var(--text-color);
+    font-size: 14px;
+    transition: background 0.3s, color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.footer-controls .filter-btn:hover {
+    background: #d0d0d0;
+}
+
+.footer-controls .filter-btn.active {
+    background: var(--primary-btn-bg);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(33, 118, 255, 0.4);
+}
+
+/* Responsive Design (Kept basic for structure) */
+@media (max-width: 400px) {
+    .row { padding-left: 10px; }
+    .todo-app { padding: 15px; }
+    .row button { padding: 10px 20px; }
+}
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
