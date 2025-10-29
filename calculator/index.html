@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themed Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-1"> <div class="container">
+    <div class="floating-quotes-container">
+        <span class="quote q1" style="--delay: 0s; --size: 1.5; --x: 10%; --y: 20%;">"01001011"</span>
+        <span class="quote q2" style="--delay: 5s; --size: 0.9; --x: 80%; --y: 50%;">"DO THE MATH"</span>
+        <span class="quote q3" style="--delay: 10s; --size: 1.2; --x: 35%; --y: 85%;">"CALCULATE"</span>
+        <span class="quote q4" style="--delay: 2s; --size: 0.7; --x: 5%; --y: 90%;">"SYNTHESIS"</span>
+        <span class="quote q5" style="--delay: 7s; --size: 1.8; --x: 90%; --y: 10%;">"1+1=?"</span>
+    </div>
+        <header class="calc-header">
+            <span class="logo">calc</span>
+            <div class="theme-switcher">
+                <span class="theme-label">THEME</span>
+                <div class="toggle-track" data-theme-toggle>
+                    <div class="toggle-numbers"><span>1</span><span>2</span><span>3</span></div>
+                    <div class="toggle-thumb" data-theme-thumb></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="display-container">
+            <div data-current-operand class="current-operand">399,981</div>
+        </div>
+
+        <div class="keypad">
+            <button data-number>7</button>
+            <button data-number>8</button>
+            <button data-number>9</button>
+            <button data-delete class="key-del">DEL</button>
+
+            <button data-number>4</button>
+            <button data-number>5</button>
+            <button data-number>6</button>
+            <button data-operator>+</button>
+
+            <button data-number>1</button>
+            <button data-number>2</button>
+            <button data-number>3</button>
+            <button data-operator>-</button>
+
+            <button data-number>.</button>
+            <button data-number>0</button>
+            <button data-operator>/</button>
+            <button data-operator class="key-multiply">x</button> <button data-all-clear class="key-reset">RESET</button>
+            <button data-equals class="key-equal">=</button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

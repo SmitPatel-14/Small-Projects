@@ -1,0 +1,390 @@
+/* --- Global Reset & Base Styling --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+}
+
+/* |----------------------------------------------------------
+|  THEME 1: RETRO-FUTURISTIC (DEEP PURPLE/ORANGE ACCENT)
+|----------------------------------------------------------
+*/
+:root {
+    /* Main Colors */
+    --theme1-main-bg: hsl(270, 25%, 15%); /* Deep Indigo */
+    --theme1-toggle-keypad-bg: hsl(270, 20%, 10%); /* Very Dark Keypad */
+    --theme1-screen-bg: hsl(270, 10%, 5%); /* Almost Black Screen */
+
+    /* Key Colors */
+    --theme1-key-bg-num: hsl(270, 15%, 30%); /* Muted Purple */
+    --theme1-key-shadow-num: hsl(270, 20%, 20%); /* Darker Shadow */
+    
+    --theme1-key-bg-del-reset: hsl(260, 50%, 60%); /* Medium Blue-Violet */
+    --theme1-key-shadow-del-reset: hsl(260, 55%, 45%);
+    
+    --theme1-key-bg-equal: hsl(30, 100%, 55%); /* Bright Orange/Neon */
+    --theme1-key-shadow-equal: hsl(30, 100%, 40%);
+
+    /* Text Colors */
+    --theme1-text-light: hsl(270, 20%, 90%); /* Off-White/Light Purple */
+    --theme1-text-dark: hsl(270, 20%, 90%); /* Light text on all dark buttons */
+    --theme1-text-blue: hsl(270, 20%, 90%); /* Light text for DEL/RESET */
+}
+
+body {
+    background-color: var(--theme1-main-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* --- Header Styling --- */
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    color: var(--theme1-text-light);
+    font-size: 1.2rem;
+}
+
+.logo {
+    font-size: 2rem;
+}
+
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.theme-label {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    align-self: flex-end;
+}
+
+.toggle-track {
+    background-color: var(--theme1-toggle-keypad-bg);
+    border-radius: 15px;
+    width: 75px;
+    height: 26px;
+    padding: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* Ensure the whole track is clickable */
+}
+
+.toggle-numbers {
+    position: absolute;
+    top: -18px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: var(--theme1-text-light);
+    font-size: 0.8rem;
+    padding: 0 5px;
+}
+
+.toggle-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: var(--theme1-key-bg-equal);
+    border-radius: 50%;
+    position: absolute;
+    left: 3px;
+    transition: left 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* --- Display Styling --- */
+.display-container {
+    background-color: var(--theme1-screen-bg);
+    color: var(--theme1-text-light);
+    padding: 25px 20px;
+    text-align: right;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    font-size: 3rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* --- Keypad Styling --- */
+.keypad {
+    background-color: var(--theme1-toggle-keypad-bg);
+    border-radius: 10px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.keypad button {
+    border: none;
+    outline: none;
+    padding: 15px 0;
+    font-size: 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 12px;
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+/* Shadow pseudo-element for depth */
+.keypad button::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: var(--theme1-key-shadow-num); /* Default shadow */
+    z-index: -1;
+    transition: background-color 0.1s ease;
+}
+
+/* Specific button styles */
+.keypad button:not(.key-del):not(.key-reset):not(.key-equal) {
+    background-color: var(--theme1-key-bg-num);
+    color: var(--theme1-text-dark);
+}
+
+.keypad button:not(.key-del):not(.key-reset):not(.key-equal):hover {
+    filter: brightness(1.2); /* Subtle brightness change for hover */
+}
+
+
+.key-del, .key-reset {
+    background-color: var(--theme1-key-bg-del-reset);
+    color: var(--theme1-text-blue);
+    font-size: 1.2rem;
+    padding-top: 18px;
+}
+
+.key-del::after, .key-reset::after {
+    background-color: var(--theme1-key-shadow-del-reset);
+}
+
+.key-del:hover, .key-reset:hover {
+    filter: brightness(1.2);
+}
+
+.key-reset {
+    grid-column: span 2;
+}
+
+.key-equal {
+    grid-column: span 2;
+    background-color: var(--theme1-key-bg-equal);
+    color: var(--theme1-text-light);
+    font-size: 2rem;
+    padding-top: 15px;
+}
+
+.key-equal::after {
+    background-color: var(--theme1-key-shadow-equal);
+}
+
+.key-equal:hover {
+    filter: brightness(1.2);
+}
+
+/* Small adjustments for operator 'x' */
+.key-multiply {
+    font-size: 1.5rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 400px) {
+    .keypad {
+        padding: 20px;
+        gap: 15px;
+    }
+    .keypad button {
+        font-size: 1.5rem;
+        padding: 10px 0;
+        padding-bottom: 8px;
+    }
+    .key-del, .key-reset {
+        font-size: 1rem;
+        padding-top: 12px;
+    }
+    .key-equal {
+        font-size: 1.8rem;
+        padding-top: 10px;
+    }
+    .display-container {
+        font-size: 2.5rem;
+        padding: 20px;
+        min-height: 80px;
+    }
+}
+
+
+/* |----------------------------------------------------------
+|  THEME 2: VAPORWAVE (HOT PINK/ELECTRIC BLUE ACCENT)
+|----------------------------------------------------------
+*/
+.theme-2 {
+    /* Main Colors */
+    --theme1-main-bg: hsl(330, 80%, 15%); /* Dark Pink */
+    --theme1-toggle-keypad-bg: hsl(330, 70%, 10%); 
+    --theme1-screen-bg: hsl(330, 60%, 5%); 
+
+    /* Key Colors */
+    --theme1-key-bg-num: hsl(330, 40%, 35%); 
+    --theme1-key-shadow-num: hsl(330, 45%, 25%);
+    
+    --theme1-key-bg-del-reset: hsl(330, 80%, 70%); /* Hot Pink */
+    --theme1-key-shadow-del-reset: hsl(330, 85%, 55%);
+    
+    --theme1-key-bg-equal: hsl(210, 80%, 60%); /* Electric Blue */
+    --theme1-key-shadow-equal: hsl(210, 85%, 45%);
+
+    /* Text Colors */
+    --theme1-text-light: hsl(270, 20%, 90%); /* Off-White/Light Purple */
+    --theme1-text-dark: hsl(270, 20%, 90%);
+    --theme1-text-blue: hsl(330, 70%, 10%); /* Dark Pink Text on DEL/RESET */
+}
+
+.theme-2 .calc-header,
+.theme-2 .toggle-numbers,
+.theme-2 .keypad button:not(.key-del):not(.key-reset):not(.key-equal) {
+    color: var(--theme1-text-light); 
+}
+
+/* DEL/RESET text is dark for this theme to stand out on bright pink */
+.theme-2 .key-del, .theme-2 .key-reset {
+    color: var(--theme1-text-blue); 
+}
+
+.theme-2 .toggle-thumb {
+    background-color: var(--theme1-key-bg-equal);
+}
+
+
+/* |----------------------------------------------------------
+|  THEME 3: CYBERPUNK (DARK FOREST/NEON YELLOW ACCENT)
+|----------------------------------------------------------
+*/
+.theme-3 {
+    /* Main Colors */
+    --theme1-main-bg: hsl(140, 40%, 10%); /* Dark Forest */
+    --theme1-toggle-keypad-bg: hsl(140, 35%, 5%); 
+    --theme1-screen-bg: hsl(140, 30%, 2%); 
+
+    /* Key Colors */
+    --theme1-key-bg-num: hsl(140, 25%, 20%); /* Muted Green */
+    --theme1-key-shadow-num: hsl(140, 30%, 10%);
+    
+    --theme1-key-bg-del-reset: hsl(170, 70%, 50%); /* Aqua */
+    --theme1-key-shadow-del-reset: hsl(170, 75%, 35%);
+    
+    --theme1-key-bg-equal: hsl(60, 100%, 65%); /* Neon Yellow */
+    --theme1-key-shadow-equal: hsl(60, 100%, 50%);
+
+    /* Text Colors */
+    --theme1-text-light: hsl(60, 100%, 80%); /* Neon Yellow/Green Text */
+    --theme1-text-dark: hsl(60, 100%, 80%);
+    --theme1-text-blue: hsl(140, 35%, 5%); /* Dark text on DEL/RESET */
+}
+
+.theme-3 .calc-header,
+.theme-3 .toggle-numbers,
+.theme-3 .display-container,
+.theme-3 .keypad button:not(.key-equal) {
+    color: var(--theme1-text-light);
+}
+
+/* DEL/RESET text is dark for this theme to stand out on aqua */
+.theme-3 .key-del, .theme-3 .key-reset {
+    color: var(--theme1-text-blue); 
+}
+
+.theme-3 .toggle-thumb {
+    background-color: var(--theme1-key-bg-equal);
+}
+
+/* --- Floating Quotes Styling --- */
+
+.floating-quotes-container {
+    position: fixed; /* Position relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Allows clicks to pass through to the main body/calculator */
+    z-index: -1; /* Place it behind the calculator */
+}
+
+.quote {
+    position: absolute;
+    /* Use CSS variables for custom look/position per quote */
+    font-size: calc(1rem * var(--size, 1)); 
+    opacity: 0.2; /* Subtle opacity */
+    
+    /* Initial placement */
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+
+    /* Neon/Glow Effect */
+    color: var(--theme1-text-light); 
+    text-shadow: 
+        0 0 5px var(--theme1-key-bg-equal), /* Light color */
+        0 0 10px var(--theme1-key-shadow-equal); /* Darker shadow */
+
+    /* Animation */
+    animation: 
+        floatEffect 25s infinite ease-in-out alternate, /* Movement */
+        fadeAndPulse 15s infinite ease-in-out var(--delay, 0s); /* Opacity & Scale */
+}
+
+/* --------------------------- */
+/* Keyframe Animations */
+/* --------------------------- */
+
+/* 1. Floating Movement */
+@keyframes floatEffect {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(15vw, 10vh) rotate(5deg);
+    }
+    66% {
+        transform: translate(-10vw, -15vh) rotate(-3deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* 2. Fade and Scale Pulse */
+@keyframes fadeAndPulse {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.35; /* Slightly brighter pulse */
+        transform: scale(1.05); /* Slight scale */
+    }
+}
